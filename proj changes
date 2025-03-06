@@ -1,0 +1,8 @@
+#Numerical Stability in Metropolis Sampling:
+log_psi_current = 2 * rbm.forward(current_v)
+log_psi_proposed = 2 * rbm.forward(proposed_v)
+log_acceptance = min(0, (log_psi_proposed - log_psi_current).item())
+if np.log(np.random.rand()) < log_acceptance:
+    current_v = proposed_v
+
+  
