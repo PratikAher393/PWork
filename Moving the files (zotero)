@@ -1,0 +1,30 @@
+import os
+import shutil
+
+def move_pdfs(source_root, dest_folder):
+    # Create destination folder if it doesn't exist
+    if not os.path.exists(dest_folder):
+        os.makedirs(dest_folder)
+    
+    for dirpath, dirnames, filenames in os.walk(source_root):
+        for file in filenames:
+            if file.lower().endswith('.pdf'):
+                src_path = os.path.join(dirpath, file)
+                dest_path = os.path.join(dest_folder, file)
+                
+                # If a file with the same name exists in the destination, add a suffix
+                base, extension = os.path.splitext(file)
+                counter = 1
+                while os.path.exists(dest_path):
+                    dest_path = os.path.join(dest_folder, f"{base}_{counter}{extension}")
+                    counter += 1
+                
+                shutil.move(src_path, dest_path)
+                print(f"Moved: {src_path} -> {dest_path}")
+
+# Define the source directory (where your nested folders are) and the destination folder
+source_directory = '/Users/pratik/Documents/Research /SDE_1/files'
+destination_folder = '/Users/pratik/Documents/Research /SDE_1/new'
+
+move_pdfs(source_directory, destination_folder)
+
