@@ -1,0 +1,8 @@
+git clone https://github.com/PratikAher393/repository.git - "change the repo"
+git pull origin main
+git status - check the new status 
+git add . -  adding a new file 
+git commit -m "Add energy convergence test image" - new file changes or naming 
+then again push - git push origin main
+
+
